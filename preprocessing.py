@@ -2,10 +2,12 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 
+#Read Datasets
 df1 = pd.read_csv('datasets/Data/features_30_sec.csv')
 df2 = pd.read_csv('datasets/Data/features_3_sec.csv')
 print("Processing Dataset 1:")
 
+#Drop unnecessary columns 
 drop_columns_1 = ["filename", "chroma_stft_mean", "chroma_stft_var", "spectral_centroid_mean", "spectral_centroid_var", "spectral_bandwidth_mean", "spectral_bandwidth_var", "rolloff_mean", "rolloff_var", "zero_crossing_rate_mean", "zero_crossing_rate_var", "length"]
 df1_cleaned = df1.drop(columns=drop_columns_1)
 df1_cleaned = df1_cleaned.dropna()
