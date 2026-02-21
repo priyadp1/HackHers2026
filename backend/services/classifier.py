@@ -1,2 +1,7 @@
 def predict_genre(audio_path):
-    return {"classical": 0.62, "hiphop": 0.30}  # stub
+    import random
+    base = random.random()
+    return {
+        "classical": round(base, 2),
+        "hiphop": round(1 - base, 2)
+    }
