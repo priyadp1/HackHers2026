@@ -8,11 +8,11 @@ df2 = pd.read_csv('datasets/Data/features_3_sec.csv')
 print("Processing Dataset 1:")
 
 #Drop unnecessary columns 
-drop_columns_1 = ["filename", "chroma_stft_mean", "chroma_stft_var", "spectral_centroid_mean", "spectral_centroid_var", "spectral_bandwidth_mean", "spectral_bandwidth_var", "rolloff_mean", "rolloff_var", "zero_crossing_rate_mean", "zero_crossing_rate_var", "length"]
+drop_columns_1 = ["chroma_stft_mean", "chroma_stft_var", "spectral_centroid_mean", "spectral_centroid_var", "spectral_bandwidth_mean", "spectral_bandwidth_var", "rolloff_mean", "rolloff_var", "zero_crossing_rate_mean", "zero_crossing_rate_var", "length"]
 df1_cleaned = df1.drop(columns=drop_columns_1)
 df1_cleaned = df1_cleaned.dropna()
 
-drop_columns_2 = ["filename", "chroma_stft_mean", "chroma_stft_var", "spectral_centroid_mean", "spectral_centroid_var", "spectral_bandwidth_mean", "spectral_bandwidth_var", "rolloff_mean", "rolloff_var", "zero_crossing_rate_mean", "zero_crossing_rate_var" , "length"]
+drop_columns_2 = ["chroma_stft_mean", "chroma_stft_var", "spectral_centroid_mean", "spectral_centroid_var", "spectral_bandwidth_mean", "spectral_bandwidth_var", "rolloff_mean", "rolloff_var", "zero_crossing_rate_mean", "zero_crossing_rate_var" , "length"]
 df2_cleaned = df2.drop(columns=drop_columns_2)  
 df2_cleaned = df2_cleaned.dropna()
 
@@ -23,7 +23,7 @@ df2_cleaned["label"] = le.transform(df2_cleaned["label"])
 
 # Scale features
 scaler = StandardScaler()
-feature_cols = [c for c in df1_cleaned.columns if c != "label"]
+feature_cols = [c for c in df1_cleaned.columns if c not in ("label", "filename")]
 df1_cleaned[feature_cols] = scaler.fit_transform(df1_cleaned[feature_cols])
 df2_cleaned[feature_cols] = scaler.transform(df2_cleaned[feature_cols])
 
