@@ -26,14 +26,14 @@ class MLP(nn.Module):
     def forward(self, x):
         return self.network(x)
 
-scaler = joblib.load('scaler.pkl')
-le = joblib.load('label_encoder.pkl')
+scaler = joblib.load('encoders/scaler.pkl')
+le = joblib.load('encoders/label_encoder.pkl')
 
 INPUT_SIZE = 47
 NUM_CLASSES = 10
 
 model = MLP(input_size=INPUT_SIZE, num_classes=NUM_CLASSES)
-model.load_state_dict(torch.load('model_3sec.pth', weights_only=True))
+model.load_state_dict(torch.load('encoders/model_3sec.pth', weights_only=True))
 model.eval()
 
 def _extract_features(audio_path: str) -> dict:
