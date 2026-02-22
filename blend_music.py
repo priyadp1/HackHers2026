@@ -1,4 +1,3 @@
-blend_music.py: 
 from audiocraft.models import MusicGen
 from pydub import AudioSegment
 import os
