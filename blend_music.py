@@ -1,14 +1,13 @@
 from audiocraft.models import MusicGen
 from pydub import AudioSegment
 import os
-import torch
 import scipy.io.wavfile as wavfile
 
 device = "cpu"
 print(f"Using device: {device}")
 
 model = MusicGen.get_pretrained("facebook/musicgen-small", device=device)
-model.set_generation_params(duration=30)
+model.set_generation_params(duration=10)
 
 
 def build_prompt(genreA, genreB, alpha):
@@ -37,6 +36,7 @@ def generate_from_blend(genreA: str, genreB: str, alpha: float, out_dir: str) ->
     prompt = build_prompt(genreA, genreB, alpha)
     print("Prompt:", prompt)
 
+    model.lm.reset_streaming()
     wav = model.generate([prompt])
 
     audio = wav[0].cpu().numpy().T  # transpose
@@ -51,7 +51,3 @@ def generate_from_blend(genreA: str, genreB: str, alpha: float, out_dir: str) ->
     os.remove(wav_path)
 
     return mp3_path
-
-
-# TEST
-generate_from_blend("classical", "hip hop", 0.7, "music_output")
