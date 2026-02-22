@@ -11,14 +11,6 @@ Unlike typical generative demos, GenreBlender combines:
 
 ---
 
-## 🌐 Live Demo
-
-Deployed on Hugging Face Spaces:
-
-👉 http://localhost:8501/  
-
----
-
 ## 🚀 Overview
 
 GenreBlender allows users to:
