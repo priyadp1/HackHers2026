@@ -294,7 +294,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-st.title("GenreBlender: Generative AI Music Mixer 🎵🤖")
+st.title("GenreBlender: Generative AI Music Mixer & Classifier 🎵🤖")
 
 tab1, tab2 = st.tabs(["Genre Blender", "Genre Classifier"])
 
